@@ -1,0 +1,55 @@
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
+
+<script>
+  $(document).ready(function() {
+      $('#pessoas').DataTable();
+  } );
+</script>
+
+<%- model_class = Pessoa -%>
+
+
+<div class="container">
+<div>
+  <div class="page-header">
+    <h1>Usuários <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_pessoa_path,
+              :class => 'btn btn-primary' %></h1>
+  </div>
+</div>
+<table class="table table-striped display" id="pessoas">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:senha) %></th>
+      <th><%= model_class.human_attribute_name(:grupo_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pessoas.each do |pessoa| %>
+      <tr>
+        <td><%= link_to pessoa.id, pessoa_path(pessoa) %></td>
+        <td><%= pessoa.email %></td>
+        <td><%= pessoa.senha %></td>
+        <td><%= pessoa.grupo.nome %></td>
+        <td><%=l pessoa.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_pessoa_path(pessoa), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      pessoa_path(pessoa),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+

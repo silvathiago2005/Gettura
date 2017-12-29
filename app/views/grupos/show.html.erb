@@ -1,0 +1,29 @@
+<%- model_class = Grupo -%>
+<div class="container">
+  <h1>Grupo de Usuário</h1>
+  <dt><strong><%= model_class.human_attribute_name(:nome) %>:</strong></dt>
+  <dd><%= @grupo.nome %></dd> <br>
+  <dt><strong><%= model_class.human_attribute_name(:descricao) %>:</strong></dt>
+  <dd><%= @grupo.descricao %></dd> <br>
+  <dd>
+    <strong>Permissões:</strong>
+    <% @grupopermissao = GrupoPermissao.select{ |gp| gp.grupo_id == @grupo.id } %>
+      <% if @grupopermissao != [] %>
+        <% @grupopermissao.each do |grupopermissao| %>
+          <% mostra = Permissao.select{ |p| p.id == grupopermissao.permissao_id } %>
+          </br><%= mostra[0].nome %> : <%= mostra[0].descricao %>
+        <% end %>
+    <% end %>
+  </dd>
+  <br>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              grupos_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_grupo_path(@grupo), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              grupo_path(@grupo),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>              

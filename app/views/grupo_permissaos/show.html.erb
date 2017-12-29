@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Grupo:</strong>
+  <%= @grupo_permissao.grupo %>
+</p>
+
+<p>
+  <strong>Permissao:</strong>
+  <%= @grupo_permissao.permissao %>
+</p>
+
+<%= link_to 'Edit', edit_grupo_permissao_path(@grupo_permissao) %> |
+<%= link_to 'Back', grupo_permissaos_path %>

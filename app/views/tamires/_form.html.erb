@@ -1,0 +1,17 @@
+<%= form_for(@tamire) do |f| %>
+  <% if @tamire.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tamire.errors.count, "error") %> prohibited this tamire from being saved:</h2>
+
+      <ul>
+      <% @tamire.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<%= form_for(@grupo_permissao) do |f| %>
+  <% if @grupo_permissao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@grupo_permissao.errors.count, "error") %> prohibited this grupo_permissao from being saved:</h2>
+
+      <ul>
+      <% @grupo_permissao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :grupo_id %><br>
+    <%= f.text_field :grupo_id %>
+  </div>
+  <div class="field">
+    <%= f.label :permissao_id %><br>
+    <%= f.text_field :permissao_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

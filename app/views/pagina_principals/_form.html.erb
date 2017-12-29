@@ -1,0 +1,21 @@
+<%= form_for(@pagina_principal) do |f| %>
+  <% if @pagina_principal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pagina_principal.errors.count, "error") %> prohibited this pagina_principal from being saved:</h2>
+
+      <ul>
+      <% @pagina_principal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :index %><br>
+    <%= f.text_field :index %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
